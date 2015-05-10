@@ -1,0 +1,9 @@
+package com.news.newshunt.pojo;
+
+public class News {
+	
+	String news ;
+	String newsBrief ;
+	String linkToImage ;
+
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="gen"/>
+	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
+	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry kind="lib" path="libs/picasso-2.5.0.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.3.6.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-cache-4.3.6.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.3.3.jar"/>
+	<classpathentry kind="lib" path="libs/httpmime-4.3.6.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.2.3.jar"/>
+	<classpathentry kind="lib" path="libs/categorylist-sources.jar"/>
+	<classpathentry kind="lib" path="libs/Parse-1.8.3.jar"/>
+	<classpathentry kind="lib" path="libs/ParseCrashReporting-1.8.3.jar"/>
+	<classpathentry kind="lib" path="libs/bolts-android-1.1.4.jar"/>
+	<classpathentry kind="output" path="bin/classes"/>
+</classpath>

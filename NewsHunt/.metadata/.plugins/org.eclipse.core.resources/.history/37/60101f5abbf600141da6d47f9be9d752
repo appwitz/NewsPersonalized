@@ -1,0 +1,28 @@
+package com.news.newshunt.screens;
+
+import android.provider.SyncStateContract.Constants;
+
+import com.parse.Parse;
+import com.parse.ParseInstallation;
+import com.parse.ParsePush;
+import com.parse.PushService;
+
+public class Application extends android.app.Application {
+
+	  public Application() {
+	  }
+
+	  @Override
+	  public void onCreate() {
+	    super.onCreate();
+
+		// Initialize the Parse SDK.
+	    //Parse.initialize(this, "cmd5q2Iv4eQd5eNddbd1mIhQ3aELHs4Cp2mQhXab", "o8uk2vC3n6a2WfNtN6AxapqcUNbnHqwqZIAurprD");
+	    Parse.initialize(this, "y7BD34j5PgNy2vrbUtyy9E0eCAaVhfegJwMKLWMn", "rKbQxjH9faYx69XpAQmoJwmqz67fe1OhsfN0FyZq");
+	    ParseInstallation.getCurrentInstallation().saveInBackground();
+
+	    // Specify an Activity to handle all pushes by default.
+		PushService.setDefaultPushCallback(this, MainActivity.class);		
+		
+	  }
+	}

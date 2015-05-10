@@ -1,0 +1,90 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="horizontal"
+    android:weightSum="10" >
+
+    <LinearLayout
+        android:id="@+id/dateLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.4"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="23"
+            android:textSize="22sp" 
+            android:id="@+id/timDate"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="May`15"
+            android:textSize="12sp"
+            android:id="@+id/timmonthyear" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/goneLayout"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.4"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text=""
+            android:textSize="22sp" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/timeline"
+        android:layout_width="0dip"
+        android:layout_height="match_parent"
+        android:layout_weight="0.58"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="5dp"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            android:background="@android:color/holo_blue_dark"
+            android:text=" " />
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center"
+            android:src="@drawable/circle" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="8"
+        android:orientation="horizontal"
+        android:padding="7dp" >
+
+        <TextView
+            android:id="@+id/timeheadline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="3dp"
+            android:text="akfnsfnsoifnweiofnisfnowinionionviosdnviosdcvoisnfvoisnvoisnviosdnvisdnfciosncoiskmcksmvcskmvpsvpsmvsmv;smvsvnsivnsjvnsubncsuicnsjcndsui"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

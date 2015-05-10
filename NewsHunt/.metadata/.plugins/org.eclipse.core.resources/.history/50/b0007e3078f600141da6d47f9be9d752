@@ -1,0 +1,19 @@
+package com.news.newshunt;
+
+public class FetchFromServer {
+	
+	private String url ;
+	
+	public FetchFromServer( String url) {
+		this.url = url ;
+	}
+	
+	public boolean fetch()
+	{
+		
+		
+		return false;
+		
+	}
+
+}

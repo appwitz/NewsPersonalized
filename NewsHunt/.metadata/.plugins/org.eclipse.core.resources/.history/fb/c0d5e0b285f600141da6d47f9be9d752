@@ -1,0 +1,8 @@
+package com.news.newshunt.constants;
+
+public class Conatants {
+
+	public static final String CATEGORIES_HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/categorylist";
+	public static final String ENGLISH_HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/categorybasedlist?";
+
+}

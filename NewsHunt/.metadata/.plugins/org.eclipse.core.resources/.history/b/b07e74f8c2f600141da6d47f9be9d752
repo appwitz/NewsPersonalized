@@ -1,0 +1,54 @@
+package com.news.newshunt;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
+
+import com.bt.project.datamanager.DataManager;
+import com.google.gson.Gson;
+import com.news.newshunt.constants.Conatants;
+import com.news.newshunt.pojo.ContentOfNews;
+import com.news.newshunt.pojo.Newscontent;
+import com.parse.ParsePushBroadcastReceiver;
+
+public class PushDataReceiver extends ParsePushBroadcastReceiver {
+	
+	ContentOfNews contentOfNews;
+
+
+	@Override
+	protected void onPushReceive(Context context, Intent intent) {
+		super.onPushReceive(context, intent);
+		try
+		{
+		Bundle bundle = intent.getExtras() ;
+		String jsonData = bundle.getString("com.parse.Data") ;
+		Gson gson = new Gson();
+		System.out.println(jsonData + "         crep");
+		contentOfNews = gson.fromJson(jsonData, ContentOfNews.class);
+		
+		Newscontent  newscontent = contentOfNews.getNewscontent().get(0) ;
+		
+		Intent intent2 = new Intent(context, NotificationActivity.class) ;
+		intent2.putExtra(Conatants.NEWS_CONTENT, newscontent.getContent()) ;
+		intent2.putExtra(Conatants.NEWS_DATE_IMAGE_LINK, newscontent.getContent()) ;
+		intent2.putExtra(Conatants.NEWS_CONTENT, newscontent.getContent()) ;
+		intent2.putExtra(Conatants.NEWS_CONTENT, newscontent.getContent()) ;
+
+		
+		Log.e("in broadcast receiver",jsonData) ;
+		}
+		catch(Exception exception)
+		{
+			Log.d("PushDataReceiver", "PushDataReceiver Eception") ;
+		}
+	}
+	
+	
+
+}

@@ -1,0 +1,10 @@
+package com.news.newshunt.fragments;
+
+import android.support.v4.app.Fragment;
+
+public class MainPageCategories extends Fragment{
+
+	
+	
+	
+}

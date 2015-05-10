@@ -1,0 +1,105 @@
+package com.news.newshunt;
+
+import com.google.gson.Gson;
+import com.news.newshunt.adapters.NewsAdapter;
+import com.news.newshunt.constants.Conatants;
+import com.news.newshunt.pojo.ContentOfNews;
+import com.news.newshunt.pojo.ListOfNews;
+import com.news.newshunt.pojo.Newscontent;
+import com.squareup.picasso.Picasso;
+
+import android.support.v7.app.ActionBarActivity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
+
+public class NewsActivity extends ActionBarActivity {
+
+	TextView headline;
+	TextView date;
+	TextView content;
+	ImageView imageView;
+	ContentOfNews contentOfNews;
+	String urlForFetch;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_news);
+
+		Intent intent = getIntent();
+		urlForFetch = intent.getStringExtra(Conatants.NEWS);
+
+		init();
+
+		AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+
+			ProgressDialog progressDialog;
+
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				progressDialog = new ProgressDialog(NewsActivity.this);
+				progressDialog.setMessage("Please Wait.........");
+				progressDialog.show();
+
+			}
+
+			@Override
+			protected Void doInBackground(Void... params) {
+				try {
+					String url = NewsListActivity.newsListHalfUrl + "English";
+					System.out.println(url);
+					FetchFromServer fetchFromServer = new FetchFromServer(urlForFetch);
+					String s = fetchFromServer.fetch();
+					Gson gson = new Gson();
+					System.out.println(s + "         crep");
+					contentOfNews = gson.fromJson(s, ContentOfNews.class);
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(Void result) {
+				super.onPostExecute(result);
+
+				Newscontent  newscontent = contentOfNews.getNewscontent().get(0) ;
+				headline.setText(newscontent.getHeadlines()) ;
+				date.setText(newscontent.getNewstime()) ;
+				content.setText(newscontent.getContent()) ;
+				
+				
+				 Picasso.with(NewsActivity.this).load(newscontent.getImagelink()) 
+			       .into(imageView);
+				
+				progressDialog.dismiss();
+			}
+		};
+
+		asyncTask.execute();
+
+	}
+
+	private void init() {
+
+		headline = (TextView) findViewById(R.id.headline);
+		date = (TextView) findViewById(R.id.date);
+		content = (TextView) findViewById(R.id.content);
+		imageView = (ImageView) findViewById(R.id.newsImage);
+
+	}
+
+}

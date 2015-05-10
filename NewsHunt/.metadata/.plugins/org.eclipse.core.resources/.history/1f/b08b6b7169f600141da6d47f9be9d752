@@ -1,0 +1,59 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/news_scroll_padd"
+            android:weightSum="10" >
+
+            <TextView
+                android:id="@+id/headline"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:text="250 villagers abducted by Naxals in Chattisgarh on eve of PM Narendra Modi&apos;s visit"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/timeline"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TIMELINE" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/newsImage"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:padding="@dimen/news_image_pad"
+            android:src="@drawable/ic_launcher" 
+            />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/news_date_pad"
+            android:text="TUE   20-JAN-2014 "
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/news_content_pad"
+            android:text="250 villagers abducted by Naxals in Chattisgarh on eve of PM Narendra Modi&apos;s visit : A hostage situation is continuing since last night in Sukma district of Chhattisgarh where around 250 villagers were seized by Maoist rebels on the eve of Prime Minister Narendra Modi&apos;s visit to neighbouring Dantewada. Chief Minister Raman Singh said anywhere between 200 and 250 villagers were abducted by the Naxals from a few villages in Sukma district and efforts were being made by the local administration for their release. (PTI) (09/05/2015)"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+</ScrollView>

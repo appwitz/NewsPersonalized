@@ -1,0 +1,7 @@
+package com.news.newshunt.fragments;
+
+import android.support.v4.app.Fragment;
+
+public class Kannada extends Fragment{
+
+}

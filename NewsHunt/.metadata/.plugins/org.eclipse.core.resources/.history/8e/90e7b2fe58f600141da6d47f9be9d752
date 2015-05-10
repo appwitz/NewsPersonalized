@@ -1,0 +1,39 @@
+package com.news.newshunt.fragments;
+
+import java.util.List;
+
+import com.news.newshunt.R;
+import com.news.newshunt.adapters.CategoriesPageAdapter;
+
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ListView;
+
+public class MainPageRecomended extends Fragment{
+
+	
+	ListView listView ;
+	CategoriesPageAdapter categoriesPageAdapter ;
+	List<String> categories , catBriefDescription ;
+	
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+		
+		View view = inflater.inflate(R.layout.mainpage_categories, null	) ;
+		listView = (ListView	)view.findViewById(R.id.l) ;
+		
+		categoriesPageAdapter = new CategoriesPageAdapter(categories, catBriefDescription, getActivity()) ;
+		
+		listView.setAdapter(categoriesPageAdapter) ;
+		
+		return view ;
+	
+	}
+	
+	
+}

@@ -1,0 +1,36 @@
+package com.news.newshunt;
+
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class NewsActivity extends ActionBarActivity {
+	
+	TextView headline ;
+	TextView date ;
+	TextView content ;
+	ImageView imageView ;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_news);
+		
+		init() ;
+		
+	}
+
+	private void init() {
+		
+		headline = (TextView)findViewById(R.id.headline) ;
+		date =  (TextView)findViewById(R.id.date) ;
+		content =  (TextView)findViewById(R.id.content) ;
+		imageView = (ImageView)findViewById(R.id.newsImage) ;
+
+	}
+
+	
+}

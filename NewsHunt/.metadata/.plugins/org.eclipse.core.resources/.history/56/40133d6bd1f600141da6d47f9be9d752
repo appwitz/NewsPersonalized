@@ -1,0 +1,24 @@
+package com.news.newshunt.constants;
+
+public class Conatants {
+
+	public static final String CATEGORIES_HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/categorylist";
+	public static final String ENGLISH_HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/categorybasedlist?";
+	public static final String HALF_URL = "HALF_URL";
+	public static final String NEWS_HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/newscontent?id=";
+	public static final String NEWS = "NEWS";
+	public static final String ACTIVITY_LOGGING = "NEWS";
+
+	public static final String NEWS_HEADLINE = "NEWS_HEADLINE";
+	public static final String NEWS_CONTENT = "NEWS_CONTENT";
+	public static final String NEWS_IMAGE_LINK = "NEWS_IMAGE_LINK";
+	public static final String NEWS_DATE = "NEWS_DATE";
+
+	public static final String TIME_ANALYTIC = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/userhistory?";
+
+	public static final String CURRENT_CATEGORY = "CURRENT_CATEGORY";
+
+	
+	public static final String TIMELINE _HTTP = "http://192.168.5.88:8080/RestFullNewsHunt/restapi/rest/history";
+
+}

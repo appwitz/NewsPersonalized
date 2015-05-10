@@ -1,0 +1,7 @@
+package com.news.newshunt.adapters;
+
+import android.widget.BaseAdapter;
+
+public class MainPageAdapter extends BaseAdapter {
+
+}

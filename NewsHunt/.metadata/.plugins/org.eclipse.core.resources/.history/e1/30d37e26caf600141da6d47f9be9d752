@@ -1,0 +1,121 @@
+package com.news.newshunt;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.google.gson.Gson;
+import com.news.newshunt.constants.Conatants;
+import com.news.newshunt.pojo.ContentOfNews;
+import com.news.newshunt.pojo.Newscontent;
+import com.squareup.picasso.Picasso;
+
+public class NotificationActivity extends Activity {
+
+	TextView headline;
+	TextView date;
+	TextView content;
+	ImageView imageView;
+	ContentOfNews contentOfNews;
+	String urlForFetch;
+	long timeStart;
+	Intent intent;
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		timeStart = System.currentTimeMillis();
+		super.onResume();
+	}
+
+	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		long timeDiff = (System.currentTimeMillis() - timeStart) / 1000;
+
+		super.onPause();
+	}
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_news);
+
+		intent = getIntent();
+
+		init();
+
+		AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+
+			ProgressDialog progressDialog;
+			Newscontent newscontent;
+
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				progressDialog = new ProgressDialog(NotificationActivity.this);
+				progressDialog.setMessage("Please Wait.........");
+				progressDialog.show();
+
+			}
+
+			@Override
+			protected Void doInBackground(Void... params) {
+				try {
+
+					newscontent = new Newscontent();
+					newscontent.setContent(intent
+							.getStringExtra(Conatants.NEWS_CONTENT));
+					newscontent.setNewstime(intent
+							.getStringExtra(Conatants.NEWS_DATE));
+					newscontent.setHeadlines(intent
+							.getStringExtra(Conatants.NEWS_HEADLINE));
+					newscontent.setImagelink(intent
+							.getStringExtra(Conatants.NEWS_IMAGE_LINK));
+
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(Void result) {
+				super.onPostExecute(result);
+				try {
+
+					headline.setText(newscontent.getHeadlines());
+					date.setText(newscontent.getNewstime());
+					content.setText(newscontent.getContent());
+
+					Picasso.with(NotificationActivity.this)
+							.load(newscontent.getImagelink()).into(imageView);
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+
+				progressDialog.dismiss();
+			}
+		};
+
+		asyncTask.execute();
+
+	}
+
+	private void init() {
+
+		headline = (TextView) findViewById(R.id.headline);
+		date = (TextView) findViewById(R.id.date);
+		content = (TextView) findViewById(R.id.content);
+		imageView = (ImageView) findViewById(R.id.newsImage);
+
+	}
+
+}

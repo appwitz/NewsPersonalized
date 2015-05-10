@@ -1,0 +1,53 @@
+package com.news.newshunt.screens;
+
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.widget.ListView;
+
+import com.news.newshunt.R;
+import com.news.newshunt.adapters.TimeLineAdapter;
+
+public class TimeLineActivity extends Activity {
+
+	ListView listView ;
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_timeline);
+
+		listView = (ListView) findViewById(R.id.listTimeline);
+		
+		AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+			ProgressDialog progressDialog;
+
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				progressDialog = new ProgressDialog(TimeLineActivity.this);
+				progressDialog.setMessage("Please Wait.........");
+				progressDialog.show();
+
+			}
+			
+			
+			@Override
+			protected Void doInBackground(Void... params) {
+
+				
+				
+				return null;
+			}
+		};
+		
+	
+		listView.setAdapter(new TimeLineAdapter(this));
+		
+		
+		
+	}
+}

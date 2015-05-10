@@ -1,0 +1,56 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="7dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/news_scroll_padd"
+            android:weightSum="10" >
+
+            <TextView
+                android:id="@+id/headlineN"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="9"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+            <Button
+                android:id="@+id/timelineN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TIMELINE" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/newsImageN"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="@dimen/news_image_pad"
+            android:scaleType="fitCenter"
+            />
+
+        <TextView
+            android:id="@+id/dateN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/news_date_pad"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/contentN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/news_content_pad"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,143 @@
+package com.news.newshunt.fragments;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.provider.SyncStateContract.Constants;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+
+import com.google.gson.Gson;
+import com.news.newshunt.FetchFromServer;
+import com.news.newshunt.NewsListActivity;
+import com.news.newshunt.R;
+import com.news.newshunt.adapters.CategoriesPageAdapter;
+import com.news.newshunt.constants.Conatants;
+import com.news.newshunt.pojo.Category;
+import com.news.newshunt.pojo.CategoryList;
+
+public class MainPageCategories extends Fragment {
+
+	ListView listView;
+	CategoriesPageAdapter categoriesPageAdapter;
+	List<String> categories, catBriefDescription;
+	CategoryList categoryList;
+
+	@Override
+	public View onCreateView(LayoutInflater inflater,
+			@Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+		categories = new ArrayList<String>();
+		catBriefDescription = new ArrayList<String>();
+//		// TODO : remove
+//
+//		categories.add("Headlines");
+//		catBriefDescription.add("India today, Indian Express");
+//
+//		categories.add("Sports");
+//		catBriefDescription.add("IPL, GOLF");
+//
+//		categories.add("ENTERTAINMENT");
+//		catBriefDescription.add("FILMy, BEAT");
+//
+//		categories.add("EMPLOYEMENT NEWS");
+//		catBriefDescription.add("NAUKRI, MONSTER");
+//
+//		// TODO : remove upto here
+//
+		View view = inflater.inflate(R.layout.mainpage_categories, null);
+		listView = (ListView) view.findViewById(R.id.list_categories_page);
+
+		return view;
+
+	}
+
+	@Override
+	public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onViewCreated(view, savedInstanceState);
+
+		AsyncTask<Void, Void, Void> asyncTask = new AsyncTask<Void, Void, Void>() {
+
+			ProgressDialog progressDialog;
+
+			@Override
+			protected void onPreExecute() {
+				// TODO Auto-generated method stub
+				super.onPreExecute();
+
+				progressDialog = new ProgressDialog(getActivity());
+				progressDialog.setMessage("Please Wait.........");
+				progressDialog.show();
+
+			}
+
+			@Override
+			protected Void doInBackground(Void... params) {
+				try {
+					FetchFromServer fetchFromServer = new FetchFromServer(
+							Conatants.CATEGORIES_HTTP);
+					String s = fetchFromServer.fetch();
+					Gson gson = new Gson();
+					System.out.println(s + "         crep");
+					categoryList = gson.fromJson(s, CategoryList.class);
+				} catch (Exception exception) {
+					exception.printStackTrace();
+				}
+
+				return null;
+			}
+
+			@Override
+			protected void onPostExecute(Void result) {
+				super.onPostExecute(result);
+
+				for (Category category : categoryList.getCategory()) {
+					categories.add(category.getCategoryname());
+				}
+
+				catBriefDescription.add("IPL, Hockey, Golf, Archery");
+				catBriefDescription.add("TV Shows, Films, Recent Releases");
+				catBriefDescription
+						.add("Harward Business Review, Trends, Market Analysis");
+				catBriefDescription.add("Latest, National, International");
+
+				categoriesPageAdapter = new CategoriesPageAdapter(categories,
+						catBriefDescription, getActivity());
+
+				listView.setAdapter(categoriesPageAdapter);
+
+				listView.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0, View arg1,
+							int pos, long arg3) {
+						// TODO Auto-generated method stub
+						Intent intent = new Intent(getActivity(),
+								NewsListActivity.class);
+						String halfUrl = Conatants.ENGLISH_HTTP + "id=" + categoryList.getCategory()
+								.get(pos).getId() + "&language=" ;
+						intent.putExtra(Conatants.HALF_URL, halfUrl);
+						getActivity().startActivity(intent);
+					}
+				});
+
+				progressDialog.dismiss();
+			}
+		};
+
+		asyncTask.execute();
+
+	}
+
+}

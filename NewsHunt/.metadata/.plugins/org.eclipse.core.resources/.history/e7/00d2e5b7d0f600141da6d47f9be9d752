@@ -1,0 +1,19 @@
+package com.news.newshunt.screens;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.ListView;
+
+import com.news.newshunt.R;
+import com.news.newshunt.adapters.TimeLineAdapter;
+
+public class TimeLineActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_timeline);
+		ListView listView = (ListView) findViewById(R.id.listTimeline);
+		listView.setAdapter(new TimeLineAdapter(this));
+	}
+}
